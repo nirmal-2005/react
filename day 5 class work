@@ -1,0 +1,34 @@
+import React, { useEffect, useState } from 'react';
+
+const ErrorBoundary = ({ children }) => {
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    const handleError = (error, errorInfo) => {
+      console.error('Error:', error, errorInfo);
+      setHasError(true);
+    };
+  });
+
+  if (hasError) {
+    return <div>Something went wrong.</div>;
+  }
+
+  return <>{children}</>;
+};
+function DemoError()
+{
+    const [list,setList] = useState(['School','college','company','Faculties','students'])
+    return(
+        <div>
+            <ul>
+                {
+                    list.map((item,i)=>(
+                        <li key={i}>{item}</li>
+                    ))
+                }
+            </ul>
+        </div>
+    )
+}
+export default DemoError;
